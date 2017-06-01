@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package protocol;
+
+option java_package = "com.protobuf.example";
+option java_outer_classname = "NotesProtocol";
+
+enum NoteType {
+  BASIC = 0;
+  REMINDER = 1;
+  SCRATCH = 2;
+}
+
+message Note{
+  int32 id = 1;
+  string name = 2;
+  int64 time = 3;
+  string content = 5;
+  NoteType type = 4;
+}
