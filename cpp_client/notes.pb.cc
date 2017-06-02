@@ -18,6 +18,8 @@
 // @@protoc_insertion_point(includes)
 
 namespace protocol {
+class EnvelopeDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<Envelope> {
+} _Envelope_default_instance_;
 class NoteDefaultTypeInternal : public ::google::protobuf::internal::ExplicitlyConstructed<Note> {
 } _Note_default_instance_;
 
@@ -26,8 +28,8 @@ namespace protobuf_notes_2eproto {
 
 namespace {
 
-::google::protobuf::Metadata file_level_metadata[1];
-const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[1];
+::google::protobuf::Metadata file_level_metadata[2];
+const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[2];
 
 }  // namespace
 
@@ -43,9 +45,19 @@ PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::AuxillaryParseTableField
 PROTOBUF_CONSTEXPR_VAR ::google::protobuf::internal::ParseTable const
     TableStruct::schema[] = {
   { NULL, NULL, 0, -1, -1, false },
+  { NULL, NULL, 0, -1, -1, false },
 };
 
 const ::google::protobuf::uint32 TableStruct::offsets[] = {
+  ~0u,  // no _has_bits_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Envelope, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Envelope, type_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Envelope, arrivaltime_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Envelope, id_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Envelope, note_),
   ~0u,  // no _has_bits_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Note, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -53,16 +65,18 @@ const ::google::protobuf::uint32 TableStruct::offsets[] = {
   ~0u,  // no _weak_field_map_
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Note, id_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Note, name_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Note, time_),
+  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Note, creationdate_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Note, content_),
   GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(Note, type_),
 };
 
 static const ::google::protobuf::internal::MigrationSchema schemas[] = {
-  { 0, -1, sizeof(Note)},
+  { 0, -1, sizeof(Envelope)},
+  { 9, -1, sizeof(Note)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
+  reinterpret_cast<const ::google::protobuf::Message*>(&_Envelope_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&_Note_default_instance_),
 };
 
@@ -84,20 +98,23 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 1);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 2);
 }
 
 }  // namespace
 
 void TableStruct::Shutdown() {
-  _Note_default_instance_.Shutdown();
+  _Envelope_default_instance_.Shutdown();
   delete file_level_metadata[0].reflection;
+  _Note_default_instance_.Shutdown();
+  delete file_level_metadata[1].reflection;
 }
 
 void TableStruct::InitDefaultsImpl() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
   ::google::protobuf::internal::InitProtobufDefaults();
+  _Envelope_default_instance_.DefaultConstruct();
   _Note_default_instance_.DefaultConstruct();
 }
 
@@ -108,15 +125,20 @@ void InitDefaults() {
 void AddDescriptorsImpl() {
   InitDefaults();
   static const char descriptor[] = {
-      "\n\013notes.proto\022\010protocol\"a\n\004Note\022\n\n\002id\030\001 "
-      "\001(\005\022\014\n\004name\030\002 \001(\t\022\014\n\004time\030\003 \001(\003\022\017\n\007conte"
-      "nt\030\005 \001(\t\022 \n\004type\030\004 \001(\0162\022.protocol.NoteTy"
-      "pe*0\n\010NoteType\022\t\n\005BASIC\020\000\022\014\n\010REMINDER\020\001\022"
-      "\013\n\007SCRATCH\020\002B%\n\024com.protobuf.exampleB\rNo"
-      "tesProtocolb\006proto3"
+      "\n\013notes.proto\022\010protocol\"\253\001\n\010Envelope\022%\n\004"
+      "type\030\001 \001(\0162\027.protocol.Envelope.Type\022\023\n\013a"
+      "rrivalTime\030\002 \001(\003\022\n\n\002id\030\003 \001(\003\022\034\n\004note\030\004 \003"
+      "(\0132\016.protocol.Note\"9\n\004Type\022\021\n\rGET_ALL_NO"
+      "TES\020\000\022\r\n\tSAVE_NOTE\020\001\022\017\n\013DELETE_NOTE\020\002\"i\n"
+      "\004Note\022\n\n\002id\030\001 \001(\003\022\014\n\004name\030\002 \001(\t\022\024\n\014creat"
+      "ionDate\030\003 \001(\003\022\017\n\007content\030\005 \001(\t\022 \n\004type\030\004"
+      " \001(\0162\022.protocol.NoteType*0\n\010NoteType\022\t\n\005"
+      "BASIC\020\000\022\014\n\010REMINDER\020\001\022\013\n\007SCRATCH\020\002B%\n\024co"
+      "m.protobuf.exampleB\rNotesProtocolb\006proto"
+      "3"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 219);
+      descriptor, 401);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "notes.proto", &protobuf_RegisterTypes);
   ::google::protobuf::internal::OnShutdown(&TableStruct::Shutdown);
@@ -135,9 +157,32 @@ struct StaticDescriptorInitializer {
 
 }  // namespace protobuf_notes_2eproto
 
-const ::google::protobuf::EnumDescriptor* NoteType_descriptor() {
+const ::google::protobuf::EnumDescriptor* Envelope_Type_descriptor() {
   protobuf_notes_2eproto::protobuf_AssignDescriptorsOnce();
   return protobuf_notes_2eproto::file_level_enum_descriptors[0];
+}
+bool Envelope_Type_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+      return true;
+    default:
+      return false;
+  }
+}
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
+const Envelope_Type Envelope::GET_ALL_NOTES;
+const Envelope_Type Envelope::SAVE_NOTE;
+const Envelope_Type Envelope::DELETE_NOTE;
+const Envelope_Type Envelope::Type_MIN;
+const Envelope_Type Envelope::Type_MAX;
+const int Envelope::Type_ARRAYSIZE;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+const ::google::protobuf::EnumDescriptor* NoteType_descriptor() {
+  protobuf_notes_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_notes_2eproto::file_level_enum_descriptors[1];
 }
 bool NoteType_IsValid(int value) {
   switch (value) {
@@ -154,9 +199,420 @@ bool NoteType_IsValid(int value) {
 // ===================================================================
 
 #if !defined(_MSC_VER) || _MSC_VER >= 1900
+const int Envelope::kTypeFieldNumber;
+const int Envelope::kArrivalTimeFieldNumber;
+const int Envelope::kIdFieldNumber;
+const int Envelope::kNoteFieldNumber;
+#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+
+Envelope::Envelope()
+  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
+  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
+    protobuf_notes_2eproto::InitDefaults();
+  }
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:protocol.Envelope)
+}
+Envelope::Envelope(const Envelope& from)
+  : ::google::protobuf::Message(),
+      _internal_metadata_(NULL),
+      note_(from.note_),
+      _cached_size_(0) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::memcpy(&arrivaltime_, &from.arrivaltime_,
+    reinterpret_cast<char*>(&type_) -
+    reinterpret_cast<char*>(&arrivaltime_) + sizeof(type_));
+  // @@protoc_insertion_point(copy_constructor:protocol.Envelope)
+}
+
+void Envelope::SharedCtor() {
+  ::memset(&arrivaltime_, 0, reinterpret_cast<char*>(&type_) -
+    reinterpret_cast<char*>(&arrivaltime_) + sizeof(type_));
+  _cached_size_ = 0;
+}
+
+Envelope::~Envelope() {
+  // @@protoc_insertion_point(destructor:protocol.Envelope)
+  SharedDtor();
+}
+
+void Envelope::SharedDtor() {
+}
+
+void Envelope::SetCachedSize(int size) const {
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+}
+const ::google::protobuf::Descriptor* Envelope::descriptor() {
+  protobuf_notes_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_notes_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
+}
+
+const Envelope& Envelope::default_instance() {
+  protobuf_notes_2eproto::InitDefaults();
+  return *internal_default_instance();
+}
+
+Envelope* Envelope::New(::google::protobuf::Arena* arena) const {
+  Envelope* n = new Envelope;
+  if (arena != NULL) {
+    arena->Own(n);
+  }
+  return n;
+}
+
+void Envelope::Clear() {
+// @@protoc_insertion_point(message_clear_start:protocol.Envelope)
+  note_.Clear();
+  ::memset(&arrivaltime_, 0, reinterpret_cast<char*>(&type_) -
+    reinterpret_cast<char*>(&arrivaltime_) + sizeof(type_));
+}
+
+bool Envelope::MergePartialFromCodedStream(
+    ::google::protobuf::io::CodedInputStream* input) {
+#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
+  ::google::protobuf::uint32 tag;
+  // @@protoc_insertion_point(parse_start:protocol.Envelope)
+  for (;;) {
+    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
+    tag = p.first;
+    if (!p.second) goto handle_unusual;
+    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+      // .protocol.Envelope.Type type = 1;
+      case 1: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(8u)) {
+          int value;
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   int, ::google::protobuf::internal::WireFormatLite::TYPE_ENUM>(
+                 input, &value)));
+          set_type(static_cast< ::protocol::Envelope_Type >(value));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // int64 arrivalTime = 2;
+      case 2: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(16u)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
+                 input, &arrivaltime_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // int64 id = 3;
+      case 3: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(24u)) {
+
+          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
+                 input, &id_)));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      // repeated .protocol.Note note = 4;
+      case 4: {
+        if (static_cast< ::google::protobuf::uint8>(tag) ==
+            static_cast< ::google::protobuf::uint8>(34u)) {
+          DO_(::google::protobuf::internal::WireFormatLite::ReadMessageNoVirtual(
+                input, add_note()));
+        } else {
+          goto handle_unusual;
+        }
+        break;
+      }
+
+      default: {
+      handle_unusual:
+        if (tag == 0 ||
+            ::google::protobuf::internal::WireFormatLite::GetTagWireType(tag) ==
+            ::google::protobuf::internal::WireFormatLite::WIRETYPE_END_GROUP) {
+          goto success;
+        }
+        DO_(::google::protobuf::internal::WireFormatLite::SkipField(input, tag));
+        break;
+      }
+    }
+  }
+success:
+  // @@protoc_insertion_point(parse_success:protocol.Envelope)
+  return true;
+failure:
+  // @@protoc_insertion_point(parse_failure:protocol.Envelope)
+  return false;
+#undef DO_
+}
+
+void Envelope::SerializeWithCachedSizes(
+    ::google::protobuf::io::CodedOutputStream* output) const {
+  // @@protoc_insertion_point(serialize_start:protocol.Envelope)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .protocol.Envelope.Type type = 1;
+  if (this->type() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteEnum(
+      1, this->type(), output);
+  }
+
+  // int64 arrivalTime = 2;
+  if (this->arrivaltime() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(2, this->arrivaltime(), output);
+  }
+
+  // int64 id = 3;
+  if (this->id() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(3, this->id(), output);
+  }
+
+  // repeated .protocol.Note note = 4;
+  for (unsigned int i = 0, n = this->note_size(); i < n; i++) {
+    ::google::protobuf::internal::WireFormatLite::WriteMessageMaybeToArray(
+      4, this->note(i), output);
+  }
+
+  // @@protoc_insertion_point(serialize_end:protocol.Envelope)
+}
+
+::google::protobuf::uint8* Envelope::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
+  // @@protoc_insertion_point(serialize_to_array_start:protocol.Envelope)
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .protocol.Envelope.Type type = 1;
+  if (this->type() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteEnumToArray(
+      1, this->type(), target);
+  }
+
+  // int64 arrivalTime = 2;
+  if (this->arrivaltime() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(2, this->arrivaltime(), target);
+  }
+
+  // int64 id = 3;
+  if (this->id() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(3, this->id(), target);
+  }
+
+  // repeated .protocol.Note note = 4;
+  for (unsigned int i = 0, n = this->note_size(); i < n; i++) {
+    target = ::google::protobuf::internal::WireFormatLite::
+      InternalWriteMessageNoVirtualToArray(
+        4, this->note(i), deterministic, target);
+  }
+
+  // @@protoc_insertion_point(serialize_to_array_end:protocol.Envelope)
+  return target;
+}
+
+size_t Envelope::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:protocol.Envelope)
+  size_t total_size = 0;
+
+  // repeated .protocol.Note note = 4;
+  {
+    unsigned int count = this->note_size();
+    total_size += 1UL * count;
+    for (unsigned int i = 0; i < count; i++) {
+      total_size +=
+        ::google::protobuf::internal::WireFormatLite::MessageSizeNoVirtual(
+          this->note(i));
+    }
+  }
+
+  // int64 arrivalTime = 2;
+  if (this->arrivaltime() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
+        this->arrivaltime());
+  }
+
+  // int64 id = 3;
+  if (this->id() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
+        this->id());
+  }
+
+  // .protocol.Envelope.Type type = 1;
+  if (this->type() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::EnumSize(this->type());
+  }
+
+  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
+  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
+  _cached_size_ = cached_size;
+  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  return total_size;
+}
+
+void Envelope::MergeFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:protocol.Envelope)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Envelope* source =
+      ::google::protobuf::internal::DynamicCastToGenerated<const Envelope>(
+          &from);
+  if (source == NULL) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:protocol.Envelope)
+    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:protocol.Envelope)
+    MergeFrom(*source);
+  }
+}
+
+void Envelope::MergeFrom(const Envelope& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:protocol.Envelope)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::google::protobuf::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  note_.MergeFrom(from.note_);
+  if (from.arrivaltime() != 0) {
+    set_arrivaltime(from.arrivaltime());
+  }
+  if (from.id() != 0) {
+    set_id(from.id());
+  }
+  if (from.type() != 0) {
+    set_type(from.type());
+  }
+}
+
+void Envelope::CopyFrom(const ::google::protobuf::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:protocol.Envelope)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void Envelope::CopyFrom(const Envelope& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:protocol.Envelope)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Envelope::IsInitialized() const {
+  return true;
+}
+
+void Envelope::Swap(Envelope* other) {
+  if (other == this) return;
+  InternalSwap(other);
+}
+void Envelope::InternalSwap(Envelope* other) {
+  note_.InternalSwap(&other->note_);
+  std::swap(arrivaltime_, other->arrivaltime_);
+  std::swap(id_, other->id_);
+  std::swap(type_, other->type_);
+  std::swap(_cached_size_, other->_cached_size_);
+}
+
+::google::protobuf::Metadata Envelope::GetMetadata() const {
+  protobuf_notes_2eproto::protobuf_AssignDescriptorsOnce();
+  return protobuf_notes_2eproto::file_level_metadata[kIndexInFileMessages];
+}
+
+#if PROTOBUF_INLINE_NOT_IN_HEADERS
+// Envelope
+
+// .protocol.Envelope.Type type = 1;
+void Envelope::clear_type() {
+  type_ = 0;
+}
+::protocol::Envelope_Type Envelope::type() const {
+  // @@protoc_insertion_point(field_get:protocol.Envelope.type)
+  return static_cast< ::protocol::Envelope_Type >(type_);
+}
+void Envelope::set_type(::protocol::Envelope_Type value) {
+  
+  type_ = value;
+  // @@protoc_insertion_point(field_set:protocol.Envelope.type)
+}
+
+// int64 arrivalTime = 2;
+void Envelope::clear_arrivaltime() {
+  arrivaltime_ = GOOGLE_LONGLONG(0);
+}
+::google::protobuf::int64 Envelope::arrivaltime() const {
+  // @@protoc_insertion_point(field_get:protocol.Envelope.arrivalTime)
+  return arrivaltime_;
+}
+void Envelope::set_arrivaltime(::google::protobuf::int64 value) {
+  
+  arrivaltime_ = value;
+  // @@protoc_insertion_point(field_set:protocol.Envelope.arrivalTime)
+}
+
+// int64 id = 3;
+void Envelope::clear_id() {
+  id_ = GOOGLE_LONGLONG(0);
+}
+::google::protobuf::int64 Envelope::id() const {
+  // @@protoc_insertion_point(field_get:protocol.Envelope.id)
+  return id_;
+}
+void Envelope::set_id(::google::protobuf::int64 value) {
+  
+  id_ = value;
+  // @@protoc_insertion_point(field_set:protocol.Envelope.id)
+}
+
+// repeated .protocol.Note note = 4;
+int Envelope::note_size() const {
+  return note_.size();
+}
+void Envelope::clear_note() {
+  note_.Clear();
+}
+const ::protocol::Note& Envelope::note(int index) const {
+  // @@protoc_insertion_point(field_get:protocol.Envelope.note)
+  return note_.Get(index);
+}
+::protocol::Note* Envelope::mutable_note(int index) {
+  // @@protoc_insertion_point(field_mutable:protocol.Envelope.note)
+  return note_.Mutable(index);
+}
+::protocol::Note* Envelope::add_note() {
+  // @@protoc_insertion_point(field_add:protocol.Envelope.note)
+  return note_.Add();
+}
+::google::protobuf::RepeatedPtrField< ::protocol::Note >*
+Envelope::mutable_note() {
+  // @@protoc_insertion_point(field_mutable_list:protocol.Envelope.note)
+  return &note_;
+}
+const ::google::protobuf::RepeatedPtrField< ::protocol::Note >&
+Envelope::note() const {
+  // @@protoc_insertion_point(field_list:protocol.Envelope.note)
+  return note_;
+}
+
+#endif  // PROTOBUF_INLINE_NOT_IN_HEADERS
+
+// ===================================================================
+
+#if !defined(_MSC_VER) || _MSC_VER >= 1900
 const int Note::kIdFieldNumber;
 const int Note::kNameFieldNumber;
-const int Note::kTimeFieldNumber;
+const int Note::kCreationDateFieldNumber;
 const int Note::kContentFieldNumber;
 const int Note::kTypeFieldNumber;
 #endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
@@ -183,16 +639,16 @@ Note::Note(const Note& from)
     content_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.content_);
   }
   ::memcpy(&id_, &from.id_,
-    reinterpret_cast<char*>(&time_) -
-    reinterpret_cast<char*>(&id_) + sizeof(time_));
+    reinterpret_cast<char*>(&type_) -
+    reinterpret_cast<char*>(&id_) + sizeof(type_));
   // @@protoc_insertion_point(copy_constructor:protocol.Note)
 }
 
 void Note::SharedCtor() {
   name_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   content_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ::memset(&id_, 0, reinterpret_cast<char*>(&time_) -
-    reinterpret_cast<char*>(&id_) + sizeof(time_));
+  ::memset(&id_, 0, reinterpret_cast<char*>(&type_) -
+    reinterpret_cast<char*>(&id_) + sizeof(type_));
   _cached_size_ = 0;
 }
 
@@ -233,8 +689,8 @@ void Note::Clear() {
 // @@protoc_insertion_point(message_clear_start:protocol.Note)
   name_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
   content_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  ::memset(&id_, 0, reinterpret_cast<char*>(&time_) -
-    reinterpret_cast<char*>(&id_) + sizeof(time_));
+  ::memset(&id_, 0, reinterpret_cast<char*>(&type_) -
+    reinterpret_cast<char*>(&id_) + sizeof(type_));
 }
 
 bool Note::MergePartialFromCodedStream(
@@ -247,13 +703,13 @@ bool Note::MergePartialFromCodedStream(
     tag = p.first;
     if (!p.second) goto handle_unusual;
     switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // int32 id = 1;
+      // int64 id = 1;
       case 1: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(8u)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
+                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
                  input, &id_)));
         } else {
           goto handle_unusual;
@@ -277,14 +733,14 @@ bool Note::MergePartialFromCodedStream(
         break;
       }
 
-      // int64 time = 3;
+      // int64 creationDate = 3;
       case 3: {
         if (static_cast< ::google::protobuf::uint8>(tag) ==
             static_cast< ::google::protobuf::uint8>(24u)) {
 
           DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
                    ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
-                 input, &time_)));
+                 input, &creationdate_)));
         } else {
           goto handle_unusual;
         }
@@ -349,9 +805,9 @@ void Note::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // int32 id = 1;
+  // int64 id = 1;
   if (this->id() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(1, this->id(), output);
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(1, this->id(), output);
   }
 
   // string name = 2;
@@ -364,9 +820,9 @@ void Note::SerializeWithCachedSizes(
       2, this->name(), output);
   }
 
-  // int64 time = 3;
-  if (this->time() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(3, this->time(), output);
+  // int64 creationDate = 3;
+  if (this->creationdate() != 0) {
+    ::google::protobuf::internal::WireFormatLite::WriteInt64(3, this->creationdate(), output);
   }
 
   // .protocol.NoteType type = 4;
@@ -394,9 +850,9 @@ void Note::SerializeWithCachedSizes(
   ::google::protobuf::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // int32 id = 1;
+  // int64 id = 1;
   if (this->id() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(1, this->id(), target);
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(1, this->id(), target);
   }
 
   // string name = 2;
@@ -410,9 +866,9 @@ void Note::SerializeWithCachedSizes(
         2, this->name(), target);
   }
 
-  // int64 time = 3;
-  if (this->time() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(3, this->time(), target);
+  // int64 creationDate = 3;
+  if (this->creationdate() != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(3, this->creationdate(), target);
   }
 
   // .protocol.NoteType type = 4;
@@ -454,24 +910,24 @@ size_t Note::ByteSizeLong() const {
         this->content());
   }
 
-  // int32 id = 1;
+  // int64 id = 1;
   if (this->id() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
         this->id());
+  }
+
+  // int64 creationDate = 3;
+  if (this->creationdate() != 0) {
+    total_size += 1 +
+      ::google::protobuf::internal::WireFormatLite::Int64Size(
+        this->creationdate());
   }
 
   // .protocol.NoteType type = 4;
   if (this->type() != 0) {
     total_size += 1 +
       ::google::protobuf::internal::WireFormatLite::EnumSize(this->type());
-  }
-
-  // int64 time = 3;
-  if (this->time() != 0) {
-    total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int64Size(
-        this->time());
   }
 
   int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
@@ -514,11 +970,11 @@ void Note::MergeFrom(const Note& from) {
   if (from.id() != 0) {
     set_id(from.id());
   }
+  if (from.creationdate() != 0) {
+    set_creationdate(from.creationdate());
+  }
   if (from.type() != 0) {
     set_type(from.type());
-  }
-  if (from.time() != 0) {
-    set_time(from.time());
   }
 }
 
@@ -548,8 +1004,8 @@ void Note::InternalSwap(Note* other) {
   name_.Swap(&other->name_);
   content_.Swap(&other->content_);
   std::swap(id_, other->id_);
+  std::swap(creationdate_, other->creationdate_);
   std::swap(type_, other->type_);
-  std::swap(time_, other->time_);
   std::swap(_cached_size_, other->_cached_size_);
 }
 
@@ -561,15 +1017,15 @@ void Note::InternalSwap(Note* other) {
 #if PROTOBUF_INLINE_NOT_IN_HEADERS
 // Note
 
-// int32 id = 1;
+// int64 id = 1;
 void Note::clear_id() {
-  id_ = 0;
+  id_ = GOOGLE_LONGLONG(0);
 }
-::google::protobuf::int32 Note::id() const {
+::google::protobuf::int64 Note::id() const {
   // @@protoc_insertion_point(field_get:protocol.Note.id)
   return id_;
 }
-void Note::set_id(::google::protobuf::int32 value) {
+void Note::set_id(::google::protobuf::int64 value) {
   
   id_ = value;
   // @@protoc_insertion_point(field_set:protocol.Note.id)
@@ -628,18 +1084,18 @@ void Note::set_allocated_name(::std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:protocol.Note.name)
 }
 
-// int64 time = 3;
-void Note::clear_time() {
-  time_ = GOOGLE_LONGLONG(0);
+// int64 creationDate = 3;
+void Note::clear_creationdate() {
+  creationdate_ = GOOGLE_LONGLONG(0);
 }
-::google::protobuf::int64 Note::time() const {
-  // @@protoc_insertion_point(field_get:protocol.Note.time)
-  return time_;
+::google::protobuf::int64 Note::creationdate() const {
+  // @@protoc_insertion_point(field_get:protocol.Note.creationDate)
+  return creationdate_;
 }
-void Note::set_time(::google::protobuf::int64 value) {
+void Note::set_creationdate(::google::protobuf::int64 value) {
   
-  time_ = value;
-  // @@protoc_insertion_point(field_set:protocol.Note.time)
+  creationdate_ = value;
+  // @@protoc_insertion_point(field_set:protocol.Note.creationDate)
 }
 
 // string content = 5;

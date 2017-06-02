@@ -32,6 +32,9 @@
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 namespace protocol {
+class Envelope;
+class EnvelopeDefaultTypeInternal;
+extern EnvelopeDefaultTypeInternal _Envelope_default_instance_;
 class Note;
 class NoteDefaultTypeInternal;
 extern NoteDefaultTypeInternal _Note_default_instance_;
@@ -53,6 +56,28 @@ void AddDescriptors();
 void InitDefaults();
 }  // namespace protobuf_notes_2eproto
 
+enum Envelope_Type {
+  Envelope_Type_GET_ALL_NOTES = 0,
+  Envelope_Type_SAVE_NOTE = 1,
+  Envelope_Type_DELETE_NOTE = 2,
+  Envelope_Type_Envelope_Type_INT_MIN_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32min,
+  Envelope_Type_Envelope_Type_INT_MAX_SENTINEL_DO_NOT_USE_ = ::google::protobuf::kint32max
+};
+bool Envelope_Type_IsValid(int value);
+const Envelope_Type Envelope_Type_Type_MIN = Envelope_Type_GET_ALL_NOTES;
+const Envelope_Type Envelope_Type_Type_MAX = Envelope_Type_DELETE_NOTE;
+const int Envelope_Type_Type_ARRAYSIZE = Envelope_Type_Type_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* Envelope_Type_descriptor();
+inline const ::std::string& Envelope_Type_Name(Envelope_Type value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    Envelope_Type_descriptor(), value);
+}
+inline bool Envelope_Type_Parse(
+    const ::std::string& name, Envelope_Type* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<Envelope_Type>(
+    Envelope_Type_descriptor(), name, value);
+}
 enum NoteType {
   BASIC = 0,
   REMINDER = 1,
@@ -77,6 +102,141 @@ inline bool NoteType_Parse(
 }
 // ===================================================================
 
+class Envelope : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:protocol.Envelope) */ {
+ public:
+  Envelope();
+  virtual ~Envelope();
+
+  Envelope(const Envelope& from);
+
+  inline Envelope& operator=(const Envelope& from) {
+    CopyFrom(from);
+    return *this;
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const Envelope& default_instance();
+
+  static inline const Envelope* internal_default_instance() {
+    return reinterpret_cast<const Envelope*>(
+               &_Envelope_default_instance_);
+  }
+  static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
+    0;
+
+  void Swap(Envelope* other);
+
+  // implements Message ----------------------------------------------
+
+  inline Envelope* New() const PROTOBUF_FINAL { return New(NULL); }
+
+  Envelope* New(::google::protobuf::Arena* arena) const PROTOBUF_FINAL;
+  void CopyFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void MergeFrom(const ::google::protobuf::Message& from) PROTOBUF_FINAL;
+  void CopyFrom(const Envelope& from);
+  void MergeFrom(const Envelope& from);
+  void Clear() PROTOBUF_FINAL;
+  bool IsInitialized() const PROTOBUF_FINAL;
+
+  size_t ByteSizeLong() const PROTOBUF_FINAL;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) PROTOBUF_FINAL;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const PROTOBUF_FINAL;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const PROTOBUF_FINAL;
+  int GetCachedSize() const PROTOBUF_FINAL { return _cached_size_; }
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const PROTOBUF_FINAL;
+  void InternalSwap(Envelope* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const PROTOBUF_FINAL;
+
+  // nested types ----------------------------------------------------
+
+  typedef Envelope_Type Type;
+  static const Type GET_ALL_NOTES =
+    Envelope_Type_GET_ALL_NOTES;
+  static const Type SAVE_NOTE =
+    Envelope_Type_SAVE_NOTE;
+  static const Type DELETE_NOTE =
+    Envelope_Type_DELETE_NOTE;
+  static inline bool Type_IsValid(int value) {
+    return Envelope_Type_IsValid(value);
+  }
+  static const Type Type_MIN =
+    Envelope_Type_Type_MIN;
+  static const Type Type_MAX =
+    Envelope_Type_Type_MAX;
+  static const int Type_ARRAYSIZE =
+    Envelope_Type_Type_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor*
+  Type_descriptor() {
+    return Envelope_Type_descriptor();
+  }
+  static inline const ::std::string& Type_Name(Type value) {
+    return Envelope_Type_Name(value);
+  }
+  static inline bool Type_Parse(const ::std::string& name,
+      Type* value) {
+    return Envelope_Type_Parse(name, value);
+  }
+
+  // accessors -------------------------------------------------------
+
+  // repeated .protocol.Note note = 4;
+  int note_size() const;
+  void clear_note();
+  static const int kNoteFieldNumber = 4;
+  const ::protocol::Note& note(int index) const;
+  ::protocol::Note* mutable_note(int index);
+  ::protocol::Note* add_note();
+  ::google::protobuf::RepeatedPtrField< ::protocol::Note >*
+      mutable_note();
+  const ::google::protobuf::RepeatedPtrField< ::protocol::Note >&
+      note() const;
+
+  // int64 arrivalTime = 2;
+  void clear_arrivaltime();
+  static const int kArrivalTimeFieldNumber = 2;
+  ::google::protobuf::int64 arrivaltime() const;
+  void set_arrivaltime(::google::protobuf::int64 value);
+
+  // int64 id = 3;
+  void clear_id();
+  static const int kIdFieldNumber = 3;
+  ::google::protobuf::int64 id() const;
+  void set_id(::google::protobuf::int64 value);
+
+  // .protocol.Envelope.Type type = 1;
+  void clear_type();
+  static const int kTypeFieldNumber = 1;
+  ::protocol::Envelope_Type type() const;
+  void set_type(::protocol::Envelope_Type value);
+
+  // @@protoc_insertion_point(class_scope:protocol.Envelope)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::RepeatedPtrField< ::protocol::Note > note_;
+  ::google::protobuf::int64 arrivaltime_;
+  ::google::protobuf::int64 id_;
+  int type_;
+  mutable int _cached_size_;
+  friend struct protobuf_notes_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
 class Note : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:protocol.Note) */ {
  public:
   Note();
@@ -97,7 +257,7 @@ class Note : public ::google::protobuf::Message /* @@protoc_insertion_point(clas
                &_Note_default_instance_);
   }
   static PROTOBUF_CONSTEXPR int const kIndexInFileMessages =
-    0;
+    1;
 
   void Swap(Note* other);
 
@@ -169,11 +329,17 @@ class Note : public ::google::protobuf::Message /* @@protoc_insertion_point(clas
   ::std::string* release_content();
   void set_allocated_content(::std::string* content);
 
-  // int32 id = 1;
+  // int64 id = 1;
   void clear_id();
   static const int kIdFieldNumber = 1;
-  ::google::protobuf::int32 id() const;
-  void set_id(::google::protobuf::int32 value);
+  ::google::protobuf::int64 id() const;
+  void set_id(::google::protobuf::int64 value);
+
+  // int64 creationDate = 3;
+  void clear_creationdate();
+  static const int kCreationDateFieldNumber = 3;
+  ::google::protobuf::int64 creationdate() const;
+  void set_creationdate(::google::protobuf::int64 value);
 
   // .protocol.NoteType type = 4;
   void clear_type();
@@ -181,21 +347,15 @@ class Note : public ::google::protobuf::Message /* @@protoc_insertion_point(clas
   ::protocol::NoteType type() const;
   void set_type(::protocol::NoteType value);
 
-  // int64 time = 3;
-  void clear_time();
-  static const int kTimeFieldNumber = 3;
-  ::google::protobuf::int64 time() const;
-  void set_time(::google::protobuf::int64 value);
-
   // @@protoc_insertion_point(class_scope:protocol.Note)
  private:
 
   ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
   ::google::protobuf::internal::ArenaStringPtr name_;
   ::google::protobuf::internal::ArenaStringPtr content_;
-  ::google::protobuf::int32 id_;
+  ::google::protobuf::int64 id_;
+  ::google::protobuf::int64 creationdate_;
   int type_;
-  ::google::protobuf::int64 time_;
   mutable int _cached_size_;
   friend struct protobuf_notes_2eproto::TableStruct;
 };
@@ -205,17 +365,93 @@ class Note : public ::google::protobuf::Message /* @@protoc_insertion_point(clas
 // ===================================================================
 
 #if !PROTOBUF_INLINE_NOT_IN_HEADERS
+// Envelope
+
+// .protocol.Envelope.Type type = 1;
+inline void Envelope::clear_type() {
+  type_ = 0;
+}
+inline ::protocol::Envelope_Type Envelope::type() const {
+  // @@protoc_insertion_point(field_get:protocol.Envelope.type)
+  return static_cast< ::protocol::Envelope_Type >(type_);
+}
+inline void Envelope::set_type(::protocol::Envelope_Type value) {
+  
+  type_ = value;
+  // @@protoc_insertion_point(field_set:protocol.Envelope.type)
+}
+
+// int64 arrivalTime = 2;
+inline void Envelope::clear_arrivaltime() {
+  arrivaltime_ = GOOGLE_LONGLONG(0);
+}
+inline ::google::protobuf::int64 Envelope::arrivaltime() const {
+  // @@protoc_insertion_point(field_get:protocol.Envelope.arrivalTime)
+  return arrivaltime_;
+}
+inline void Envelope::set_arrivaltime(::google::protobuf::int64 value) {
+  
+  arrivaltime_ = value;
+  // @@protoc_insertion_point(field_set:protocol.Envelope.arrivalTime)
+}
+
+// int64 id = 3;
+inline void Envelope::clear_id() {
+  id_ = GOOGLE_LONGLONG(0);
+}
+inline ::google::protobuf::int64 Envelope::id() const {
+  // @@protoc_insertion_point(field_get:protocol.Envelope.id)
+  return id_;
+}
+inline void Envelope::set_id(::google::protobuf::int64 value) {
+  
+  id_ = value;
+  // @@protoc_insertion_point(field_set:protocol.Envelope.id)
+}
+
+// repeated .protocol.Note note = 4;
+inline int Envelope::note_size() const {
+  return note_.size();
+}
+inline void Envelope::clear_note() {
+  note_.Clear();
+}
+inline const ::protocol::Note& Envelope::note(int index) const {
+  // @@protoc_insertion_point(field_get:protocol.Envelope.note)
+  return note_.Get(index);
+}
+inline ::protocol::Note* Envelope::mutable_note(int index) {
+  // @@protoc_insertion_point(field_mutable:protocol.Envelope.note)
+  return note_.Mutable(index);
+}
+inline ::protocol::Note* Envelope::add_note() {
+  // @@protoc_insertion_point(field_add:protocol.Envelope.note)
+  return note_.Add();
+}
+inline ::google::protobuf::RepeatedPtrField< ::protocol::Note >*
+Envelope::mutable_note() {
+  // @@protoc_insertion_point(field_mutable_list:protocol.Envelope.note)
+  return &note_;
+}
+inline const ::google::protobuf::RepeatedPtrField< ::protocol::Note >&
+Envelope::note() const {
+  // @@protoc_insertion_point(field_list:protocol.Envelope.note)
+  return note_;
+}
+
+// -------------------------------------------------------------------
+
 // Note
 
-// int32 id = 1;
+// int64 id = 1;
 inline void Note::clear_id() {
-  id_ = 0;
+  id_ = GOOGLE_LONGLONG(0);
 }
-inline ::google::protobuf::int32 Note::id() const {
+inline ::google::protobuf::int64 Note::id() const {
   // @@protoc_insertion_point(field_get:protocol.Note.id)
   return id_;
 }
-inline void Note::set_id(::google::protobuf::int32 value) {
+inline void Note::set_id(::google::protobuf::int64 value) {
   
   id_ = value;
   // @@protoc_insertion_point(field_set:protocol.Note.id)
@@ -274,18 +510,18 @@ inline void Note::set_allocated_name(::std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:protocol.Note.name)
 }
 
-// int64 time = 3;
-inline void Note::clear_time() {
-  time_ = GOOGLE_LONGLONG(0);
+// int64 creationDate = 3;
+inline void Note::clear_creationdate() {
+  creationdate_ = GOOGLE_LONGLONG(0);
 }
-inline ::google::protobuf::int64 Note::time() const {
-  // @@protoc_insertion_point(field_get:protocol.Note.time)
-  return time_;
+inline ::google::protobuf::int64 Note::creationdate() const {
+  // @@protoc_insertion_point(field_get:protocol.Note.creationDate)
+  return creationdate_;
 }
-inline void Note::set_time(::google::protobuf::int64 value) {
+inline void Note::set_creationdate(::google::protobuf::int64 value) {
   
-  time_ = value;
-  // @@protoc_insertion_point(field_set:protocol.Note.time)
+  creationdate_ = value;
+  // @@protoc_insertion_point(field_set:protocol.Note.creationDate)
 }
 
 // string content = 5;
@@ -356,6 +592,8 @@ inline void Note::set_type(::protocol::NoteType value) {
 }
 
 #endif  // !PROTOBUF_INLINE_NOT_IN_HEADERS
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 
@@ -366,6 +604,11 @@ inline void Note::set_type(::protocol::NoteType value) {
 namespace google {
 namespace protobuf {
 
+template <> struct is_proto_enum< ::protocol::Envelope_Type> : ::google::protobuf::internal::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::protocol::Envelope_Type>() {
+  return ::protocol::Envelope_Type_descriptor();
+}
 template <> struct is_proto_enum< ::protocol::NoteType> : ::google::protobuf::internal::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::protocol::NoteType>() {

@@ -5,16 +5,29 @@ package protocol;
 option java_package = "com.protobuf.example";
 option java_outer_classname = "NotesProtocol";
 
+message Envelope {
+  enum Type {
+    GET_ALL_NOTES = 0;
+    SAVE_NOTE = 1;
+    DELETE_NOTE = 2;
+  }
+
+  Type type = 1;
+  int64 arrivalTime = 2;
+  int64 id = 3;
+  repeated Note note = 4;
+}
+
 enum NoteType {
   BASIC = 0;
   REMINDER = 1;
   SCRATCH = 2;
 }
 
-message Note{
-  int32 id = 1;
+message Note {
+  int64 id = 1;
   string name = 2;
-  int64 time = 3;
+  int64 creationDate = 3;
   string content = 5;
   NoteType type = 4;
 }
