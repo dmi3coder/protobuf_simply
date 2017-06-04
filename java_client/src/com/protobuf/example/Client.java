@@ -30,7 +30,8 @@ public class Client {
                         + "- Ногу для C++ клиента")
                     .setId(((long) (Math.random() * 900000000)))
                     .setType(NoteType.BASIC).build();
-        Envelope build = Envelope.newBuilder().addNote(note).setType(Type.GET_ALL_NOTES).build();
+        //Change type to make different requests
+        Envelope build = Envelope.newBuilder().addNote(note).setType(Type.SAVE_NOTE).build();
         ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
         byteBuffer.put(build.toByteArray());
         byteBuffer.flip();
