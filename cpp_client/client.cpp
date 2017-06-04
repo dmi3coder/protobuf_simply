@@ -4,8 +4,11 @@
 #include <string.h>
 
 using namespace std;
+using namespace protocol;
 
 static bool connected = 0;
+
+static Envelope createEnvelope(Note *note);
 
 static void client_handler(struct mg_connection *conn, int ev, void *p) {
     struct mbuf *io = &conn->send_mbuf;
@@ -22,39 +25,45 @@ static void client_handler(struct mg_connection *conn, int ev, void *p) {
                 note.set_name(name);
                 note.set_content(cafel);
                 note.set_id(1);
-                note.set_time(260);
                 note.set_type(protocol::NoteType::BASIC);
+                Envelope envelope = createEnvelope(&note);
 
-                int size = note.ByteSize();
+                int size = envelope.ByteSize();
                 printf("%d",size);
                 char* array = new char[size];
-                note.SerializeToArray(array, size);
+                envelope.SerializeToArray(array, size);
 
-                std::string outData = note.SerializeAsString();
-                conn->flags = conn->flags|MG_EV_CLOSE;
+                std::string outData = envelope.SerializeAsString();
 
                 mg_send(conn, array, size);
-
-                printf("%s\n", "Connected to server. Type a message and press enter.");
             }
         break;
         case MG_EV_SEND:
-            closesocket(conn->sock);
         break;
         case MG_EV_RECV:
         {
-            string receivedString = io->buf;
-            cout << receivedString;
-            cout << "MG_EV_RECV dude,for real! "<< a++ << endl;
+            Envelope receivedEnvelope = Envelope();
+            receivedEnvelope.ParseFromString((&conn->recv_mbuf)->buf);
+            for (int i = 0; i < receivedEnvelope.note_size(); ++i) {
+                cout << receivedEnvelope.note(i).DebugString() << endl;
+            }
         }
             break;
         case MG_EV_ACCEPT:
             break;
         case MG_EV_POLL:
-
         default:
+            cout << ev << endl;
+            exit(0);
             break;
     }
+}
+
+static Envelope createEnvelope(Note *note){
+  Envelope envelope = Envelope();
+  *envelope.add_note() = *note;
+  envelope.set_type(Envelope_Type::Envelope_Type_GET_ALL_NOTES);
+  return envelope;
 }
 
 int main(int argc, const char * argv[]) {
