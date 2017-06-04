@@ -49,7 +49,7 @@ public class Server {
                 Envelope responseEnvelope;
                 switch (envelope.getType()){
                     case GET_ALL_NOTES:
-                        System.out.println("notes size"+notes.size());
+                        System.out.println("notes size: "+notes.size());
                     default:
                         responseEnvelope = Envelope.newBuilder().addAllNote(notes).setType(Type.GET_ALL_NOTES).build();
                         break;

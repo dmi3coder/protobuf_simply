@@ -20,8 +20,8 @@ static void client_handler(struct mg_connection *conn, int ev, void *p) {
                 exit(EXIT_FAILURE);
             }else{
                 protocol::Note note = protocol::Note();
-                string name = "Купить кафель";
-                string cafel = "Купить коричневый кафель";
+                string name = "Buy vegetable";
+                string cafel = "-Apple\n-Pomodoro\n-Avocado";
                 note.set_name(name);
                 note.set_content(cafel);
                 note.set_id(1);
@@ -29,7 +29,7 @@ static void client_handler(struct mg_connection *conn, int ev, void *p) {
                 Envelope envelope = createEnvelope(&note);
 
                 int size = envelope.ByteSize();
-                printf("%d",size);
+                printf("envelope size: %d",size);
                 char* array = new char[size];
                 envelope.SerializeToArray(array, size);
 
@@ -70,7 +70,6 @@ int main(int argc, const char * argv[]) {
     GOOGLE_PROTOBUF_VERIFY_VERSION;
     struct mg_mgr mgr;
     struct mg_connection *nc;
-    printf("KAL");
 
     mg_mgr_init(&mgr, NULL);
     nc = mg_connect(&mgr, "tcp://127.0.0.1:27015", client_handler);

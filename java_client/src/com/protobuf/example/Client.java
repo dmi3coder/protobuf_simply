@@ -22,12 +22,12 @@ public class Client {
     public static void main(String[] args) throws IOException, InterruptedException {
         SocketChannel channel = SocketChannel.open(new InetSocketAddress(InetAddress.getByName("127.0.0.1"),27015));
         Note note = Note.newBuilder()
-                    .setName("Список покупок")
-                    .setContent("Купить:\n"
-                        + "- Пивко\n"
-                        + "- Сосиски\n"
-                        + "- Бекон\n"
-                        + "- Ногу для C++ клиента")
+                    .setName("But list")
+                    .setContent("Buy:\n"
+                        + "- Beer\n"
+                        + "- Beef\n"
+                        + "- Bacon\n"
+                        + "- Leg for C++ client part")
                     .setId(((long) (Math.random() * 900000000)))
                     .setType(NoteType.BASIC).build();
         //Change type to make different requests
