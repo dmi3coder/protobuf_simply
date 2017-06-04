@@ -45,7 +45,7 @@ static void client_handler(struct mg_connection *conn, int ev, void *p) {
             Envelope receivedEnvelope = Envelope();
             receivedEnvelope.ParseFromString((&conn->recv_mbuf)->buf);
             for (int i = 0; i < receivedEnvelope.note_size(); ++i) {
-                cout << receivedEnvelope.note(i).DebugString() << endl;
+                cout << receivedEnvelope.note(i).Utf8DebugString() << endl;
             }
         }
             break;
