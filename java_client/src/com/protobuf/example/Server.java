@@ -21,6 +21,7 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * Created by dim3coder on 5/28/17.
@@ -45,9 +46,25 @@ public class Server {
 
                 Envelope envelope = Envelope.parseFrom(buf);
                 System.out.println(envelope.getNote(0).getContent());
+                Envelope responseEnvelope;
+                switch (envelope.getType()){
+                    case GET_ALL_NOTES:
+                    default:
+                        responseEnvelope = Envelope.newBuilder().addAllNote(notes).setType(Type.GET_ALL_NOTES).build();
+                        break;
+                    case SAVE_NOTE:
+                        notes.add(envelope.getNote(0));
+                        responseEnvelope = envelope;
+                        break;
+                    case DELETE_NOTE:
+                        notes.removeIf(note -> note.getId()==envelope.getNote(0).getId());
+                    case UNRECOGNIZED:
+                        responseEnvelope = envelope;
+                        break;
+                }
 
                 ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
-                byteBuffer.put(envelope.toByteArray());
+                byteBuffer.put(responseEnvelope.toByteArray());
                 byteBuffer.flip();
                 client.write(byteBuffer);
 

@@ -11,6 +11,7 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
+import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -29,7 +30,7 @@ public class Client {
                         + "- Ногу для C++ клиента")
                     .setId(((long) (Math.random() * 900000000)))
                     .setType(NoteType.BASIC).build();
-        Envelope build = Envelope.newBuilder().addNote(note).setType(Type.SAVE_NOTE).build();
+        Envelope build = Envelope.newBuilder().addNote(note).setType(Type.GET_ALL_NOTES).build();
         ByteBuffer byteBuffer = ByteBuffer.allocate(1024);
         byteBuffer.put(build.toByteArray());
         byteBuffer.flip();
@@ -42,6 +43,9 @@ public class Client {
         }
         buf.flip();
         Envelope envelope = Envelope.parseFrom(buf);
+        for (Note note1 : envelope.getNoteList()) {
+            System.out.println(note1.toByteString().toStringUtf8());
+        }
         System.out.println(envelope.getType());
 
     }
