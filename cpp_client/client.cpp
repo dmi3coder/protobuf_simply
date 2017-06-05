@@ -21,9 +21,9 @@ static void client_handler(struct mg_connection *conn, int ev, void *p) {
             }else{
                 protocol::Note note = protocol::Note();
                 string name = "Buy vegetable";
-                string cafel = "-Apple\n-Pomodoro\n-Avocado";
+                string content = "-Apple\n-Pomodoro\n-Avocado";
                 note.set_name(name);
-                note.set_content(cafel);
+                note.set_content(content);
                 note.set_id(1);
                 note.set_type(protocol::NoteType::BASIC);
                 Envelope envelope = createEnvelope(&note);

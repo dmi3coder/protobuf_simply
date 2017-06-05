@@ -1,44 +1,34 @@
 package com.protobuf.example;
 
-import com.google.protobuf.ByteString;
-import com.google.protobuf.CodedInputStream;
-import com.google.protobuf.ExtensionRegistryLite;
 import com.protobuf.example.NotesProtocol.Envelope;
 import com.protobuf.example.NotesProtocol.Envelope.Type;
 import com.protobuf.example.NotesProtocol.Note;
-import com.sun.xml.internal.ws.encoding.MtomCodec.ByteArrayBuffer;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.net.SocketAddress;
-import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
 /**
  * Created by dim3coder on 5/28/17.
  */
 public class Server {
+
     static List<Note> notes = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
         ServerSocketChannel serverSocketChannel = ServerSocketChannel.open();
-        serverSocketChannel.bind(new InetSocketAddress(InetAddress.getByName("127.0.0.1"),27015));
-        while (true){
+        serverSocketChannel.bind(new InetSocketAddress(InetAddress.getByName("127.0.0.1"), 27015));
+        while (true) {
             try {
                 System.out.println("Waiting for client :P");
                 SocketChannel client = serverSocketChannel.accept();
                 ByteBuffer buf = ByteBuffer.allocate(1024);
                 int numBytesRead = client.read(buf);
-                if(numBytesRead==-1) {
+                if (numBytesRead == -1) {
                     client.close();
                     continue;
                 }
@@ -47,18 +37,19 @@ public class Server {
                 Envelope envelope = Envelope.parseFrom(buf);
                 System.out.println(envelope.getNote(0).getContent());
                 Envelope responseEnvelope;
-                switch (envelope.getType()){
+                switch (envelope.getType()) {
                     case GET_ALL_NOTES:
-                        System.out.println("notes size: "+notes.size());
+                        System.out.println("notes size: " + notes.size());
                     default:
-                        responseEnvelope = Envelope.newBuilder().addAllNote(notes).setType(Type.GET_ALL_NOTES).build();
+                        responseEnvelope = Envelope.newBuilder().addAllNote(notes)
+                            .setType(Type.GET_ALL_NOTES).build();
                         break;
                     case SAVE_NOTE:
                         notes.add(envelope.getNote(0));
                         responseEnvelope = envelope;
                         break;
                     case DELETE_NOTE:
-                        notes.removeIf(note -> note.getId()==envelope.getNote(0).getId());
+                        notes.removeIf(note -> note.getId() == envelope.getNote(0).getId());
                     case UNRECOGNIZED:
                         responseEnvelope = envelope;
                         break;
@@ -70,7 +61,7 @@ public class Server {
                 client.write(byteBuffer);
 
                 client.close();
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
